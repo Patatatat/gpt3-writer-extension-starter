@@ -14,5 +14,8 @@
     "default_title": "Telling you the full lore of a game"
   },
 
-  "permissions":  ["contextMenus", "tabs", "storage"]
+  "background": {
+    "service_worker": "scripts/contextMenuServiceWorker.js"
+  },
+  "permissions": ["contextMenus", "tabs", "storage"]
 }
