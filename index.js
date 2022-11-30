@@ -6,11 +6,6 @@ const checkForKey = () => {
   });
 };
 
-document.getElementById("save_key_button").addEventListener("click", saveKey);
-document
-  .getElementById("change_key_button")
-  .addEventListener("click", changeKey);
-
 const encode = (input) => {
   return btoa(input);
 };
@@ -21,7 +16,10 @@ const saveKey = () => {
   if (input) {
     const { value } = input;
 
+    // Encode
     const encodedValue = encode(value);
+
+    // Saving google storage
     chrome.storage.local.set({ "openai-key": encodedValue }, () => {
       document.getElementById("key_needed").style.display = "none";
       document.getElementById("key_entered").style.display = "block";
@@ -29,13 +27,14 @@ const saveKey = () => {
   }
 };
 
+
+
 const changeKey = () => {
   document.getElementById("key_needed").style.display = "block";
   document.getElementById("key_entered").style.display = "none";
 };
 
 document.getElementById("save_key_button").addEventListener("click", saveKey);
-
 document
   .getElementById("change_key_button")
   .addEventListener("click", changeKey);
