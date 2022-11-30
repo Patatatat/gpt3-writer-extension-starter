@@ -1,6 +1,6 @@
 {
-  "name": "GPT-3 Writer",
-  "description": "Write a blog post in the style of your favorite thinker anywhere!",
+  "name": "Lore games",
+  "description": "Write the title of the game, we'll do the rest",
   "version": "1.0",
   "manifest_version": 3,
   "icons": {
@@ -11,6 +11,8 @@
   },
   "action": {
     "default_popup": "index.html",
-    "default_title": "Generate blog post"
-  }
+    "default_title": "Telling you the full lore of a game"
+  },
+
+  "permissions":  ["contextMenus", "tabs", "storage"]
 }
