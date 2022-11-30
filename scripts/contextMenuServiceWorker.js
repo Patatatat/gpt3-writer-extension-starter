@@ -26,9 +26,11 @@ const sendMessage = (content) => {
 };
 
 const generate = async (prompt) => {
+  // Get your API key from storage
   const key = await getKey();
   const url = "https://api.openai.com/v1/completions";
 
+  // Call completions endpoint
   const completionResponse = await fetch(url, {
     method: "POST",
     headers: {
@@ -36,13 +38,14 @@ const generate = async (prompt) => {
       Authorization: `Bearer ${key}`,
     },
     body: JSON.stringify({
-      model: "text-davinci-003",
+      model: "text-davinci-002",
       prompt: prompt,
-      max_tokens: 1250,
+      max_tokens: 1500,
       temperature: 0.7,
     }),
   });
 
+  // Select the top choice and send back
   const completion = await completionResponse.json();
   return completion.choices.pop();
 };
@@ -50,13 +53,13 @@ const generate = async (prompt) => {
 const generateCompletionAction = async (info) => {
   try {
 
-    sendMessage('generating please wait...');
+    sendMessage('generating...');
 
     const { selectionText } = info;
     const basePromptPrefix = `
     write me the lore of the game with the style of GLaDOS from Aperture Science in portal 2 with the title below. Please make sure the lore of the game goes in-depth on the topic and shows that the writer did their research.
 
-    Title: 
+    Title:
       `;
 
     const baseCompletion = await generate(
@@ -66,18 +69,17 @@ const generateCompletionAction = async (info) => {
     // Add your second prompt here
     const secondPrompt = `
     Take the table of contents and title of the lore of the game below and generate the game lore written in with style of GLaDOS from Aperture Science in portal 2. Make it feel like a history. Don't just list the points. Go deep into each one. Explain why.
+
+    Title: ${selectionText}
       
-      Title: ${selectionText}
+    Table of Contents: ${baseCompletion.text}
       
-      Table of Contents: ${baseCompletion.text}
-      
-      Tweet:
+    Tweet:
       `;
 
-    // Call your second prompt
     const secondPromptCompletion = await generate(secondPrompt);
 
-    sendMessage(secondPromptCompletion.text);
+      sendMessage(secondPromptCompletion.text);
   } catch (error) {
     console.log(error);
 
@@ -87,7 +89,7 @@ const generateCompletionAction = async (info) => {
 
 chrome.contextMenus.create({
   id: "context-run",
-  title: "Generate lore game",
+  title: "Generate blog post",
   contexts: ["selection"],
 });
 
