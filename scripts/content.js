@@ -1,3 +1,5 @@
+//Change the code here if you want it to work with other pages
+
 const insert = (content) => {
   // Find Calmly editor input section
   const elements = document.getElementsByClassName("droid");
@@ -34,6 +36,9 @@ splitContent.forEach((content) => {
   // On success return true
   return true;
 };
+
+//TODO stop here
+
 
 chrome.runtime.onMessage.addListener(
   // This is the message listener
