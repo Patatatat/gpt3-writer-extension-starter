@@ -53,11 +53,11 @@ const generate = async (prompt) => {
 const generateCompletionAction = async (info) => {
   try {
 
-    sendMessage('generating...');
+    sendMessage('generating please wait...');
 
     const { selectionText } = info;
     const basePromptPrefix = `
-    write me the lore of the game with the style of GLaDOS from Aperture Science in portal 2 with the title below. Please make sure the lore of the game goes in-depth on the topic and shows that the writer did their research.
+    write me the full lore of the game with the style of GLaDOS from Aperture Science in portal 2 with the title below. Please make sure the lore of the game goes in-depth on the topic and shows that the writer did their research.
 
     Title:
       `;
@@ -89,7 +89,7 @@ const generateCompletionAction = async (info) => {
 
 chrome.contextMenus.create({
   id: "context-run",
-  title: "Generate blog post",
+  title: "Generate lore game",
   contexts: ["selection"],
 });
 

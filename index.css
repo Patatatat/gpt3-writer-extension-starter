@@ -1,7 +1,58 @@
 body {
   min-width: 250px;
+  background-image: linear-gradient(
+    135deg,
+    #dc3535,
+    #ffc600,
+    #b01e68,
+    #ffe15d,
+    #9c2c77,
+    #d4d925
+  );
+  background-size: 500%;
+  animation: fanimado 10s infinite;
+}
+
+#change_key_button {
+  background-image: linear-gradient(
+    135deg,
+    #FCF9BE,
+    #FDFF00,
+    #F0E161,
+    #D9CB50,
+    #C0B236,
+    #F9EBC8
+  );
+  background-size: 500%;
+  animation: Kanimated 15s infinite;
 }
 
 #key_entered {
   display: none;
 }
+
+@keyframes fanimado {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 50% 100%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes kanimated {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 50% 100%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+
